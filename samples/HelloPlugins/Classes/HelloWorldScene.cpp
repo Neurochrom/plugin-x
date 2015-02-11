@@ -49,6 +49,7 @@ bool HelloWorld::init()
     Size visibleSize = Director::getInstance()->getVisibleSize();
     Point origin = Director::getInstance()->getVisibleOrigin();
 
+#ifdef COCOS_MENU_ENABLED
     /////////////////////////////
     // 2. add a menu item with "X" image, which is clicked to quit the program
     //    you may modify it.
@@ -59,13 +60,14 @@ bool HelloWorld::init()
                                         "CloseSelected.png",
                                         CC_CALLBACK_1(HelloWorld::menuCloseCallback, this));
     
-	pCloseItem->setPosition(Point(origin.x + visibleSize.width - pCloseItem->getContentSize().width/2 ,
+    pCloseItem->setPosition(Point(origin.x + visibleSize.width - pCloseItem->getContentSize().width/2 ,
                                 origin.y + pCloseItem->getContentSize().height/2));
 
     // create menu, it's an autorelease object
     Menu* pMenu = Menu::create(pCloseItem, NULL);
     pMenu->setPosition(Point::ZERO);
     this->addChild(pMenu, 1);
+#endif
 
     Point beginPos = Point(origin.x + visibleSize.width / 2, origin.y + visibleSize.height - 50);
     float step = 60.0f;
